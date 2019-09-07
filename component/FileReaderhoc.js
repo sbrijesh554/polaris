@@ -16,7 +16,18 @@ export const FileReaderhoc  = (WrapperComponent) => {
         
             fileReader.onload = () => {
                 let workbook = XLSX.read(fileReader.result,{type: 'binary'});
-                let data = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+                let result = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+                let data = [];
+                result.forEach((obj) => {
+                    for (let key in obj) {
+                        if (key.charAt(0) != '_') {
+                            let o = {};
+                            o[key] = obj[key]; 
+                            data.push(o);
+                        }
+                    }
+                
+                })
                 this.setState({
                     data
                 })

@@ -1,6 +1,6 @@
 import React from 'react';
 import {FileReaderhoc} from './FileReaderhoc';
-import Test from './Test.jsx';
+
 class FileReaderComp extends React.PureComponent{
     constructor(props){
         super();
@@ -12,29 +12,15 @@ class FileReaderComp extends React.PureComponent{
 
     handleUpload =  (event) => {
         event.preventDefault();
-        let result =  this.props.readFile(this.fileInput.current.files[0]);
+        this.props.readFile(this.fileInput.current.files[0]);
     }
 
-    runTest = () => {
-        let data = this.state.data;
-        data++;
-        this.setState({
-            data
-        })
-    }
-    componentWillUpdate(){
-        console.log("hello")
-    }
-    componentDidUpdate(){
-        console.log("hi")
-    }
+
+    
     render(){
         return (
             <React.Fragment>
-                <button onClick={this.runTest}>Click</button>
-                <Test data = {this.state.data}></Test>
-
-                {/* <form onSubmit={this.handleUpload}>
+                <form className = "form" onSubmit={this.handleUpload}>
                     <label>
                         Upload file:
                     <input type="file" ref={this.fileInput} />
@@ -43,7 +29,8 @@ class FileReaderComp extends React.PureComponent{
                 </form>
                 {
                 this.props.data?
-                    (<table>
+                    (
+                    <table>
                         <thead>
                             <tr>
                                 <th>Column A</th>
@@ -51,14 +38,22 @@ class FileReaderComp extends React.PureComponent{
                             </tr>
                         </thead>
                         <tbody>
-                            {this.props.data.map((data)=>{
-                                return <tr><td>data</td></tr>
-                            })}
+                            {this.props.data.map((data,index)=>{
+                                
+                                    return (
+                                    <tr key = {index}>
+                                        <td>{Object.keys(data)[0]}</td>
+                                        <td>{data[Object.keys(data)[0]]}</td>
+                                    </tr>
+                                    )
+                            })
+                            }
                         </tbody>
-                    </table>)
+                    </table>
+                    )
                     :
                     ''
-                } */}
+                }
             </React.Fragment>
             
         )
@@ -66,4 +61,3 @@ class FileReaderComp extends React.PureComponent{
 }
 
 export const App = FileReaderhoc(FileReaderComp);
-export default App;
