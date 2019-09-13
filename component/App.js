@@ -31,19 +31,12 @@ class FileReaderComp extends React.PureComponent{
                 this.props.data?
                     (
                     <table>
-                        <thead>
-                            <tr>
-                                <th>Column A</th>
-                                <th>Column B</th>
-                            </tr>
-                        </thead>
                         <tbody>
-                            {this.props.data.map((data,index)=>{
-                                
+                            {this.props.data.map((data,index)=>{  
                                     return (
                                     <tr key = {index}>
-                                        <td>{Object.keys(data)[0]}</td>
-                                        <td>{data[Object.keys(data)[0]]}</td>
+                                        <td>{Object.keys(data).toString()}</td>
+                                        <td>{Object.values(data).toString()}</td>
                                     </tr>
                                     )
                             })
