@@ -26,6 +26,6 @@
     "webpack": "^4.10.2",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.1.4",
-    "xlsx": "^0.15.1"
+    "xlsx": "^0.17.0"
   }
 }
